@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+<changeSet id="create_employee_table" author="Hemant">
+        <createTable tableName="Employee">
+            <column name="EmployeeId" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="FirstName" type="VARCHAR(50)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="LastName" type="varchar(50)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="Phone" type="varchar(50)">
+                <constraints nullable="true"/>
+            </column>
+          </createTable>
+    </changeSet>
+    <changeSet id="add_pk_for_employee" author="Hemant">
+    <addPrimaryKey columnNames="EmployeeId"
+                  constraintName="pk_employee"
+                  tableName="Employee" />
+    </changeSet>
+	<!--<changeSet id="insert-Employee_Data" author="Hemant">
+    <preConditions onFail="MARK_RAN" 
+    onFailMessage="There is no Employee data">
+        <sqlCheck expectedResult="1" >
+            select count(1)
+            from Employee
+            where EmployeeId = ‘1234567'
+        </sqlCheck>
+    </preConditions>
+    <sql>
+        insert into Employee (EmployeeId, FirstName, LastName, Phone) values(1234567', 'Hemant', ’Pati', ‘123456789')
+     </sql>   
+    <rollback>
+        <delete tableName="Employee">
+            <where>EmployeeId='123456789'</where>
+        </delete>
+    </rollback>
+</changeSet>-->
+<changeSet id="add_employee_data" author="Hemant">
+    <insert tableName="Employee">
+        <column name="EmployeeId" type="BIGINT" valueNumeric="10001"/>
+        <column name="FirstName">aaa</column>
+        <column name="LastName">bbb</column>
+        <column name="Phone">+91 32324324</column>
+      </insert>
+    <insert tableName="Employee">
+        <column name="EmployeeId" type="BIGINT" valueNumeric="10002"/>
+        <column name="FirstName">dsd</column>
+        <column name="LastName">dsd</column>
+        <column name="Phone">+91 2342233</column>
+     </insert>
+    <insert tableName="Employee">
+        <column name="EmployeeId" type="BIGINT" valueNumeric="10003"/>
+        <column name="FirstName">qwe</column>
+        <column name="LastName">qwe</column>
+        <column name="Phone">+91 23232323</column>
+      </insert>
+    <rollback>
+        <sql>
+            delete from Employee
+            where EmployeeId in (10001)
+        </sql>
+    </rollback>
+</changeSet>
+</databaseChangeLog>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--
+<changeSet author="Hemant" id="1">
+    <createTable tableName="publisher">
+        <column name="id" type="BIGINT">
+            <constraints nullable="false"/>
+        </column>
+        <column name="name" type="VARCHAR(255)"/>
+        <column name="version" type="INT">
+            <constraints nullable="false"/>
+        </column>
+    </createTable>
+    <rollback>
+        <dropTable tableName="publisher" />
+    </rollback>
+</changeSet>-->
+
