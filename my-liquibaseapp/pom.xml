@@ -26,7 +26,7 @@
                 <artifactId>liquibase-maven-plugin</artifactId>
                 <version>3.5.3</version>
 <configuration>
-   <propertyFile>C:/Users/178910/my-liquibaseapp/src/main/resources/liquibase/liquibase.properties</propertyFile>
+   <propertyFile><YOUR PATH>/liquibase.properties</propertyFile>
 </configuration>
                 <executions>
    <execution>
@@ -39,3 +39,4 @@
            </plugins>
          </build>
 </project>
+
